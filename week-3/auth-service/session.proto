@@ -3,7 +3,8 @@ syntax = "proto3";
 
 package auth;
 
-option go_package = "github.com/wickyou23/learning-golang-proto/week-3/auth-service/sessionpb;sessionpb";
+// option go_package = "auth-service/internal/proto/sessionpb;sessionpb";
+option go_package = "be/proto/auth-service/sessionpb;sessionpb";
 
 import "auth.proto";
 
