@@ -9,11 +9,11 @@ all: gen_auth gen_chat
 
 gen_auth: $(AUTH_PROTO_FILES)
 	@mkdir -p $(PROTOC_GEN_DIR)/auth-service
-	protoc -I=$(PROTOC_INC_AUTH_DIR) --go_out=$(PROTOC_GEN_DIR)/auth-service $^
+	protoc -I=$(PROTOC_INC_AUTH_DIR) --experimental_allow_proto3_optional --go_out=$(PROTOC_GEN_DIR)/auth-service $^
 
 gen_chat: $(CHAT_PROTO_FILES)
 	@mkdir -p $(PROTOC_GEN_DIR)/chat-service
-	protoc -I=$(PROTOC_INC_CHAT_DIR) --go_out=$(PROTOC_GEN_DIR)/chat-service $^
+	protoc -I=$(PROTOC_INC_CHAT_DIR) --experimental_allow_proto3_optional --go_out=$(PROTOC_GEN_DIR)/chat-service $^
 
 clean:
 	rm -rf $(PROTOC_GEN_DIR)
