@@ -3,7 +3,7 @@ syntax = "proto3";
 
 package chat;
 
-option go_package = "chat-service/internal/proto/modelpb;modelpb";
+option go_package = "github.com/wickyou23/learning-golang-proto/week-3/chat-service/modelpb;modelpb";
 
 enum MessageType {
     PING = 0;
