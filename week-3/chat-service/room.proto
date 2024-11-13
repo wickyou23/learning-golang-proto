@@ -3,7 +3,7 @@ syntax = "proto3";
 
 package chat;
 
-option go_package = "github.com/wickyou23/learning-golang-proto/week-3/gen/chat-service/roompb;roompb";
+option go_package = "github.com/wickyou23/learning-golang-proto/week-3/gen/chat-service/roompb;chatpb";
 
 import "model.proto";
 
