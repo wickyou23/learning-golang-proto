@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+package auth;
+
+// option go_package = "auth-service/internal/proto/authpb;authpb";
+option go_package = "be/proto/auth-service/authpb;authpb";
+
+message Empty {}

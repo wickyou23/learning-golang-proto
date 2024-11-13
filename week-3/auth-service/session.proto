@@ -1,0 +1,39 @@
+// api/room.proto
+syntax = "proto3";
+
+package auth;
+
+// option go_package = "auth-service/internal/proto/sessionpb;sessionpb";
+option go_package = "be/proto/auth-service/sessionpb;sessionpb";
+
+import "auth.proto";
+
+service AuthPb {
+    rpc AuthUser (AuthUserRequest) returns (AuthUserResponse);
+    rpc Logout (Empty) returns (Empty);
+    rpc ValidateToken (ValidateTokenRequest) returns (ValidateTokenResponse);
+}
+
+message Session {
+    string session_id = 1;
+    string token = 2;
+    string refresh_token = 3;
+}
+
+message AuthUserRequest {
+    string username = 1;
+    string password = 2;
+}
+
+message AuthUserResponse {
+    Session session = 1;
+}
+
+message ValidateTokenRequest {
+    string token = 1;
+}
+
+message ValidateTokenResponse {
+    string user_id = 1;
+    string username = 2;
+}

@@ -1,0 +1,28 @@
+// api/chat.proto
+syntax = "proto3";
+
+package chat;
+
+option go_package = "chat-service/internal/proto/chatpb;chatpb";
+
+import "model.proto";
+
+service ChatService {
+  rpc SendMessage (SendMessageRequest) returns (MessageResponse);
+  rpc StreamMessages (StreamMessageRequest) returns (stream MessageResponse);
+}
+
+message SendMessageRequest {
+  string user_id = 1;
+  string room_id = 2;
+  MessageType message_type = 3;
+  MessageMetadata message = 4;
+}
+
+message MessageResponse {
+  Message message = 1;
+}
+
+message StreamMessageRequest {
+  string user_id = 1;
+}

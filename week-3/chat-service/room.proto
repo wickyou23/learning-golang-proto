@@ -1,0 +1,50 @@
+// api/proto/room.proto
+syntax = "proto3";
+
+package chat;
+
+option go_package = "chat-service/internal/proto/roompb;roompb";
+
+import "model.proto";
+
+service RoomService {
+    rpc CreateRoom (CreateRoomRequest) returns (CreateRoomResponse);
+    rpc JoinRoom (JoinRoomRequest) returns (JoinRoomResponse);
+    rpc LeaveRoom (LeaveRoomRequest) returns (Empty);
+    rpc ListRooms (Empty) returns (ListRoomsResponse);
+    rpc DeleteRoom (DeleteRoomRequest) returns (Empty);
+    rpc JoinGlobalRoom (Empty) returns (JoinRoomResponse);
+}
+
+message CreateRoomRequest {
+    repeated Member members = 2;
+    string room_name = 3;
+}
+
+message CreateRoomResponse {
+    Room room = 1;
+}
+
+message JoinRoomRequest {
+    string room_id = 2;
+}
+
+message JoinRoomResponse {
+    Room room = 1;
+}
+
+message LeaveRoomRequest {
+    string room_id = 2;
+}
+
+message DeleteRoomRequest {
+    string room_id = 2;
+}
+
+message ListRoomsResponse {
+    repeated Room rooms = 1;
+}
+
+message JoinGlobalRoomRequest {
+    string user_id = 1;
+}

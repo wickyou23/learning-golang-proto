@@ -1,0 +1,45 @@
+// api/chat.proto
+syntax = "proto3";
+
+package chat;
+
+option go_package = "chat-service/internal/proto/modelpb;modelpb";
+
+enum MessageType {
+    PING = 0;
+    TEXT = 1;
+    IMAGE = 2;
+    VIDEO = 3;
+    AUDIO = 4;
+}
+
+message MessageMetadata {
+    optional string message = 1;
+    optional string metadata_url = 2;
+}
+
+message Message {
+    string message_id = 1;
+    MessageType message_type = 3;
+    MessageMetadata message = 2;
+    string created_at = 4;
+    string sender = 5;
+    Room room = 6;
+}
+
+message Room {
+    string room_id = 1;
+    string room_name = 2;
+    string owner_id = 3;
+    string created_at = 4;
+    uint32 total_members = 5;
+    repeated Member members = 6;
+}
+
+message Member {
+    string user_id = 1;
+    string username = 2;
+    string joined_at = 3;
+}
+
+message Empty {}
