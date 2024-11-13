@@ -6,23 +6,26 @@ PROTOC_INC_CHAT_DIR=chat-service
 # Wildcard pattern to find proto files in auth-service and chat-service directories
 AUTH_PROTO_FILES=$(wildcard $(PROTOC_INC_AUTH_DIR)/*.proto)
 CHAT_PROTO_FILES=$(wildcard $(PROTOC_INC_CHAT_DIR)/*.proto)
+PREFIX=github.com/wickyou23/learning-golang-proto/week-3/gen
 
 # Target to generate both auth and chat files
 all: gen_auth gen_chat
 
 # Generate code for auth-service .proto files
-gen_auth: $(AUTH_PROTO_FILES)
-	@mkdir -p $(PROTOC_GEN_DIR)/auth-service
+gen_auth:
+	@mkdir -p $(PROTOC_GEN_DIR)
 	protoc -I=$(PROTOC_INC_AUTH_DIR) --experimental_allow_proto3_optional \
-		--go_out=$(PROTOC_GEN_DIR)/auth-service --go-grpc_out=$(PROTOC_GEN_DIR)/auth-service \
-		--go_opt=paths=source_relative --go-grpc_opt=paths=source_relative $^
+		--go_out=gen --go-grpc_out=gen \
+		--go_opt=module=$(PREFIX) --go-grpc_opt=module=$(PREFIX) \
+		$(AUTH_PROTO_FILES) $^
 
-# Generate code for chat-service .proto files
-gen_chat: $(CHAT_PROTO_FILES)
-	@mkdir -p $(PROTOC_GEN_DIR)/chat-service
+#Generate code for chat-service .proto files
+gen_chat:
+	@mkdir -p $(PROTOC_GEN_DIR)
 	protoc -I=$(PROTOC_INC_CHAT_DIR) --experimental_allow_proto3_optional \
-		--go_out=$(PROTOC_GEN_DIR)/chat-service --go-grpc_out=$(PROTOC_GEN_DIR)/chat-service \
-		--go_opt=paths=source_relative --go-grpc_opt=paths=source_relative $^
+		--go_out=gen --go-grpc_out=gen \
+		--go_opt=module=$(PREFIX) --go-grpc_opt=module=$(PREFIX) \
+		$(CHAT_PROTO_FILES) $^
 
 # Clean the generated code directory
 clean:
