@@ -6,7 +6,7 @@
 // - protoc             v3.12.4
 // source: user.proto
 
-package userpb
+package authpb
 
 import (
 	context "context"

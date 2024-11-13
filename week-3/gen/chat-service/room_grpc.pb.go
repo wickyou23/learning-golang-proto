@@ -6,7 +6,7 @@
 // - protoc             v3.12.4
 // source: room.proto
 
-package roompb
+package chatpb
 
 import (
 	context "context"

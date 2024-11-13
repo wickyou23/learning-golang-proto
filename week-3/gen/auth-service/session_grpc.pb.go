@@ -6,7 +6,7 @@
 // - protoc             v3.12.4
 // source: session.proto
 
-package sessionpb
+package authpb
 
 import (
 	context "context"
